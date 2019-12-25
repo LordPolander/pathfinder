@@ -1,0 +1,76 @@
+
+output
+stats   : ['1st', '+0', '+0', '+0', '+2', '0#3', '1st#1', '2nd#-', '3rd#-', '4th#-', '5th#-', '6th#-', '7th#-', '8th#-', '9th#-']
+skills  : [' Craft ', ' Fly ', ' Heal ', ' Intimidate ', ' Knowledge (arcana) ', ' Knowledge (history) ', ' Knowledge (nature) ', ' Knowledge (planes) ', ' Profession ', ' Spellcraft ', ' Use Magic Device ']
+feats   : ['Cantrips, hex, patron spells, witch’s familiar']
+
+
+
+                                                           spells per day, 0#3 means level 0 spells 3 times for example
+                                                                '-' means null or no spells
+                                                                                        |
+                                                                                        |
+             object 5 gets deleted from list as it is in special, aka a feat            |
+                                        |                                               |
+                                        |  ____________________________________________---______________________________________
+                                        | |                                                                                     |
+stats   : ['1st', '+0', '+0', '+0', '+2', '0#3', '1st#1', '2nd#-', '3rd#-', '4th#-', '5th#-', '6th#-', '7th#-', '8th#-', '9th#-']
+
+
+
+the checkboxes that need to be checked
+
+skills  : [' Craft ', ' Fly ', ' Heal ', ' Intimidate ', ' Knowledge (arcana) ', ' Knowledge (history) ', ' Knowledge (nature) ', ' Knowledge (planes) ', ' Profession ', ' Spellcraft ', ' Use Magic Device ']
+
+
+
+these get deleted from stats as everything from lvl1 to input level needs to be saved, so they get their own list
+feats   : ['Cantrips, hex, patron spells, witch’s familiar']
+
+
+this output is taken from witch level one
+
+stats   : ['10th', '+5', '+3', '+3', '+7', '0#4', '1st#4', '2nd#4', '3rd#3', '4th#3', '5th#2', '6th#-', '7th#-', '8th#-', '9th#-']
+skills  : [' Craft ', ' Fly ', ' Heal ', ' Intimidate ', ' Knowledge (arcana) ', ' Knowledge (history) ', ' Knowledge (nature) ', ' Knowledge (planes) ', ' Profession ', ' Spellcraft ', ' Use Magic Device ']
+feats   : ['Cantrips, hex, patron spells, witch’s familiar', 'Hex', '-', 'Hex', '-', 'Hex', '-', 'Hex', '-', 'Hex, major hex']
+
+here  is output for witch level 10
+
+
+
+
+
+armor check penalty on checks with *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
