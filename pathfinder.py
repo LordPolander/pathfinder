@@ -6,8 +6,8 @@ import ods_editor
 
 print('Ooga booga, POLSKA®')
 
-def create_sheet(character_class_link,character_level):
 
+def create_sheet(character_class_link, character_level):
     character_class_page = webscrape.preprequest(character_class_link)  # send link for data
 
     character_class = webscrape.find_class(character_class_page)
@@ -45,26 +45,4 @@ def create_sheet(character_class_link,character_level):
 if __name__ == '__main__':
     character_level = int(input('level : '))
     character_class_link = str(input('link to class : '))
-    create_sheet(character_class_link,character_level)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    create_sheet(character_class_link, character_level)

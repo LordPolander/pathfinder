@@ -1,4 +1,6 @@
-from ezodf import opendoc, Sheet
+from ezodf import opendoc
+from pathlib import Path
+
 
 def edit(file_name,
          character_class,
@@ -8,7 +10,6 @@ def edit(file_name,
          character_feats,
          character_spells,
          character_hd):
-
     doc = opendoc(file_name)
 
     def edit_stats(character_stats):
@@ -54,7 +55,7 @@ def edit(file_name,
                 cell = sheet['{}{}'.format('P', ver)]
                 cellvalue = cell.value
                 if type(cellvalue) == str:
-                    cellvalue = cellvalue.replace('*','')
+                    cellvalue = cellvalue.replace('*', '')
 
                 skill = skill.upper()
                 if str(cellvalue) in str(skill):
@@ -65,7 +66,7 @@ def edit(file_name,
             ver += 2
             ver = str(ver)
 
-        knowledges = [] # create a new list for knowledges
+        knowledges = []  # create a new list for knowledges
         for skill in character_skills:
             skill = skill.upper()
             if 'KNOWLEDGE ' in str(skill):  # format
@@ -139,7 +140,16 @@ def edit(file_name,
     edit_hd(character_hd)
 
     def save(save_file):
-        doc.saveas(save_file)
+        i = 0
+        while True:
+            if Path(save_file + str(i) + '.ods').is_file():
+                i+=1
+            else:
+                doc.saveas(save_file + str(i) + '.ods')
+                print('')
+                print('file saved as:', save_file + str(i) + '.ods')
+                break
+
         return
 
-    save('character_sheet.ods')  # save file after everything is put in
+    save('character_sheet')  # save file after everything is put in
