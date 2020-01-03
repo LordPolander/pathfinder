@@ -1,3 +1,0 @@
-pathfinder.exe
-character_sheet.ods
-README.txt
