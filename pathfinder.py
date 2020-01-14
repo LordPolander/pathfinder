@@ -43,6 +43,21 @@ def create_sheet(character_class_link, character_level):
 
 
 if __name__ == '__main__':
-    character_level = int(input('level : '))
-    character_class_link = str(input('link to class : '))
-    create_sheet(character_class_link, character_level)
+
+    from pyautogui import *
+
+    debug = True
+
+    if debug:
+        character_level = int(10)
+        character_class_link = str('https://www.d20pfsrd.com/classes/core-classes/wizard/')
+    else:
+        character_level = prompt(text='Enter the level of your class',
+                                 title='Pathinator',
+                                 default='1')
+
+        character_class_link = prompt(text='Enter the link of your class',
+                                      title='Pathinator',
+                                      default='https://www.d20pfsrd.com/')
+
+    create_sheet(character_class_link, int(character_level))
