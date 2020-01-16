@@ -2,6 +2,19 @@ from ezodf import opendoc
 from pathlib import Path
 
 
+def update_pos(pos, x=0, y=0):
+    ver = ''
+    hor = ''
+    for char in pos:
+        if not char.isdigit():
+            hor = hor + char
+        else:
+            ver = ver + char
+
+    return f'{chr(ord(hor) + x)}{int(ver) + y}'
+
+
+
 def edit(file_name,
          character_class,
          character_stats,
@@ -13,11 +26,9 @@ def edit(file_name,
     doc = opendoc(file_name)
 
     def edit_stats(character_stats):
-        hor = 'W'
-        ver = 22
-        ver = str(ver)
+        pos = update_pos('W22')
         sheet = doc.sheets[0]
-        cell = sheet[f'{hor}{ver}']
+        cell = sheet[pos]
 
         level = character_stats[0]
         cell.set_value(level[:-2])  # delete characters after number
@@ -28,43 +39,44 @@ def edit(file_name,
         attack_mod = attack_mod[0]  # take first mod from list
         attack_mod = attack_mod.replace('+', '')  # delete + from the mod
 
-        hor = 'Q'
-        cell = sheet[f'{hor}{ver}']
+        # Q
+        pos = update_pos('Q22')  # set it to Q22
+        cell = sheet[pos]
         cell.set_value(attack_mod)
 
-        hor = 'T'
-        cell = sheet[f'{hor}{ver}']
+        # T
+        pos = update_pos(pos, 3)
+        cell = sheet[pos]  # move from Q to T
         cell.set_value(character_stats[2])
 
-        hor = 'U'
-        cell = sheet[f'{hor}{ver}']
+        # U
+        pos = update_pos(pos, 1)
+        cell = sheet[pos]  # +1
         cell.set_value(character_stats[3])
 
-        hor = 'V'
-        cell = sheet[f'{hor}{ver}']
+        # V
+        pos = update_pos(pos, 1)
+        cell = sheet[pos]  # +1
         cell.set_value(character_stats[4])
         return
 
     def edit_skills(character_skills):
-        ver = 38
-        ver = str(ver)
+        pos = update_pos('P38')
         sheet = doc.sheets[0]
         # 34
         while True:  # check mark skills you are proficient in, skipping knowledges
             for skill in character_skills:
-                cell = sheet[f'P{ver}']
+                cell = sheet[pos]
                 cellvalue = cell.value
                 if type(cellvalue) == str:
                     cellvalue = cellvalue.replace('*', '')
 
                 skill = skill.upper()
                 if str(cellvalue) in str(skill):
-                    sheet[f'O{ver}'].set_value(1)
-            if ver == '102':
+                    sheet[update_pos(pos, -1)].set_value(1)
+            if pos == 'P102':  # limit
                 break
-            ver = int(ver)
-            ver += 2
-            ver = str(ver)
+            pos = update_pos(pos, 0, 2)
 
         knowledges = []  # create a new list for knowledges
         for skill in character_skills:
@@ -76,74 +88,59 @@ def edit(file_name,
                 a = a.replace(')', '')
                 a = a.replace(' ', '')
                 knowledges.append(a)
-        ver = 64  # start at the knowledge box
-        ver = str(ver)
+        pos = update_pos('Q64')
         for knowledge in knowledges:
-            sheet[f'Q{ver}'].set_value(knowledge)  # set in what knowledge
-            sheet[f'O{ver}'].set_value(1)  # mark knowledge
-            ver = int(ver)
-            ver += 2
-            ver = str(ver)
+            sheet[pos].set_value(knowledge)  # set in what knowledge (Q)
+            sheet[update_pos(pos, -2)].set_value(1)  # mark knowledge (O)
+            pos = update_pos(pos, 0, 2)
         return
 
     def edit_skill_points(character_skill_points):
-        hor = 'S'
-        ver = 4
-        ver = str(ver)
+        pos = update_pos('S4')
         sheet = doc.sheets[0]
-        cell = sheet[f'{hor}{ver}']
+        cell = sheet[pos]
         character_skill_points = ''.join(filter(lambda x: x.isdigit(), character_skill_points))
         cell.set_value(character_skill_points)
         return
 
     def edit_class(character_class):
-        hor = 'N'
-        ver = 22
-        ver = str(ver)
+        pos = update_pos('N22')
         sheet = doc.sheets[0]
-        cell = sheet[f'{hor}{ver}']
+        cell = sheet[pos]
         cell.set_value(character_class)
-
         return
 
     def edit_feats(character_feats):
-        hor = 'A'
-        ver = 72
+        pos = update_pos('A72')
         for feat in character_feats:
-            ver = str(ver)
             sheet = doc.sheets[0]
-            cell = sheet[f'{hor}{ver}']
+            cell = sheet[pos]
             cell.set_value(feat)
             # print('{}{}'.format(hor, ver), '---', feat)
-            ver = int(ver)
-            if ver == 100:
-                hor = 'H'
-                ver = 72
+
+            if pos == 'A100':
+                pos = update_pos('H72')
             else:
-                ver += 2
+                pos = update_pos(pos, 0, 2)
         return
 
     def edit_hd(character_hd):
-        hor = 'M'
-        ver = 22
-        ver = str(ver)  # string the value
+        pos = update_pos('M22')
         sheet = doc.sheets[0]
-        cell = sheet[f'{hor}{ver}']
+        cell = sheet[pos]
         cell.set_value(character_hd)
         return
 
     def edit_spells(character_spells, character_class, character_stats):
-        if len(character_spells)>0:
+        if len(character_spells) > 0:
             # set spells class name
-            hor = 'B'
-            ver = 3
-            ver = str(ver)
+            pos = update_pos('B3')
             sheet = doc.sheets[2]
-            cell = sheet[f'{hor}{ver}']
+            cell = sheet[pos]
             cell.set_value(character_class)
             # set spells level
-            hor = 'G'
-            cell = sheet[f'{hor}{ver}']
+            pos = update_pos('G3')
+            cell = sheet[pos]
             level = character_stats[0]
             cell.set_value(level[:-2])
         return
@@ -160,7 +157,7 @@ def edit(file_name,
         i = 0
         while True:
             if Path(save_file + str(i) + '.ods').is_file():
-                i+=1
+                i += 1
             else:
                 doc.saveas(save_file + str(i) + '.ods')
                 print('')
