@@ -40,8 +40,8 @@ def find_tabs(soup):
 
 def find_class(soup):
     tab = soup.find('h1')
-    a = tab.text
-    return a
+    tabs = tab.text
+    return tabs
 
 
 def find_stats(soup, character_level):
@@ -169,3 +169,15 @@ def find_hd(soup):
             a = a.replace('HD:', '')
             a = a.replace('.', '')
             return a
+
+def find_data(soup,character_level):
+    data = [find_class(soup),
+            find_stats(soup, character_level),
+            find_skills(soup),
+            find_skill_points(soup),
+            find_feats(soup, character_level),
+            find_spells(soup, character_level),
+            find_hd(soup)]
+    return data
+
+

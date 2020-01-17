@@ -15,14 +15,7 @@ def update_pos(pos, x=0, y=0):
 
 
 
-def edit(file_name,
-         character_class,
-         character_stats,
-         character_skills,
-         character_skill_points,
-         character_feats,
-         character_spells,
-         character_hd):
+def edit(file_name, character_data):
     doc = opendoc(file_name)
 
     def edit_stats(character_stats):
@@ -76,7 +69,7 @@ def edit(file_name,
                     sheet[update_pos(pos, -1)].set_value(1)
             if pos == 'P102':  # limit
                 break
-            pos = update_pos(pos, 0, 2)
+            pos = update_pos(pos, 0, 2)  # update vertical by 2
 
         knowledges = []  # create a new list for knowledges
         for skill in character_skills:
@@ -145,13 +138,13 @@ def edit(file_name,
             cell.set_value(level[:-2])
         return
 
-    edit_stats(character_stats)
-    edit_skills(character_skills)
-    edit_skill_points(character_skill_points)
-    edit_class(character_class)
-    edit_feats(character_feats)
-    edit_spells(character_spells, character_class, character_stats)
-    edit_hd(character_hd)
+    edit_class(character_data[0])
+    edit_stats(character_data[1])
+    edit_skills(character_data[2])
+    edit_skill_points(character_data[3])
+    edit_feats(character_data[4])
+    edit_spells(character_data[5], character_data[0], character_data[1])
+    edit_hd(character_data[6])
 
     def save(save_file):
         i = 0
