@@ -1,5 +1,4 @@
 import webscrape
-from time import sleep
 import ods_editor
 
 # https://www.d20pfsrd.com/classes/core-classes/cleric/
@@ -32,20 +31,16 @@ def create_sheet(character_class_link, character_level):
 
 if __name__ == '__main__':
 
-    from pyautogui import *
-
     debug = False
 
     if debug:
         character_level = int(10)
         character_class_link = str('https://www.d20pfsrd.com/classes/core-classes/wizard/')
     else:
-        character_level = prompt(text='Enter the level of your class',
-                                 title='Pathinator',
-                                 default='1')
+        character_level = input('enter level: ')
 
-        character_class_link = prompt(text='Enter the link of your class',
-                                      title='Pathinator',
-                                      default='https://www.d20pfsrd.com/')
+        character_class_link = input('enter link: ')
 
     create_sheet(character_class_link, int(character_level))
+
+    input("Press Enter to exit...")
