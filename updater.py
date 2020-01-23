@@ -4,7 +4,7 @@ import os
 # install install.txt
 # txt file containing list of files
 
-url = 'https://github.com/LordPolander/pathfinder/blob/master/install.txt?raw=true'
+url = 'https://github.com/imifk/pathfinder/blob/master/install.txt?raw=true'
 
 f = urllib.request.urlopen(url)
 file = f.read()
@@ -27,7 +27,7 @@ print(contents)
 
 def install():
     for content in contents:
-        url = 'https://github.com/LordPolander/pathfinder/blob/master/{}?raw=true'.format(content)
+        url = 'https://github.com/imifk/pathfinder/blob/master/{}?raw=true'.format(content)
         print('downloading {}           '.format(content), end="\r")
         f = urllib.request.urlopen(url)
         file = f.read()
