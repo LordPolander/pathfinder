@@ -63,6 +63,7 @@ def edit(file_name, character):
                 cellvalue = cell.value
                 if type(cellvalue) == str:
                     cellvalue = cellvalue.replace('*', '')
+                    cellvalue = cellvalue.replace(':', '')
 
                 skill = skill.upper()
                 if str(cellvalue) in str(skill):
