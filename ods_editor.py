@@ -15,7 +15,7 @@ def update_pos(pos, x=0, y=0):
 
 
 
-def edit(file_name, character_data):
+def edit(file_name, character):
     doc = opendoc(file_name)
 
     def edit_stats(character_stats):
@@ -88,21 +88,6 @@ def edit(file_name, character_data):
             pos = update_pos(pos, 0, 2)
         return
 
-    def edit_skill_points(character_skill_points):
-        pos = update_pos('S4')
-        sheet = doc.sheets[0]
-        cell = sheet[pos]
-        character_skill_points = ''.join(filter(lambda x: x.isdigit(), character_skill_points))
-        cell.set_value(character_skill_points)
-        return
-
-    def edit_class(character_class):
-        pos = update_pos('N22')
-        sheet = doc.sheets[0]
-        cell = sheet[pos]
-        cell.set_value(character_class)
-        return
-
     def edit_feats(character_feats):
         pos = update_pos('A72')
         for feat in character_feats:
@@ -117,11 +102,11 @@ def edit(file_name, character_data):
                 pos = update_pos(pos, 0, 2)
         return
 
-    def edit_hd(character_hd):
-        pos = update_pos('M22')
-        sheet = doc.sheets[0]
+    def edit_onecell(character_data, str_cell, sheet):
+        pos = update_pos(str_cell)
+        sheet = doc.sheets[sheet]
         cell = sheet[pos]
-        cell.set_value(character_hd)
+        cell.set_value(character_data)
         return
 
     def edit_spells(character_spells, character_class, character_stats):
@@ -138,13 +123,13 @@ def edit(file_name, character_data):
             cell.set_value(level[:-2])
         return
 
-    edit_class(character_data[0])
-    edit_stats(character_data[1])
-    edit_skills(character_data[2])
-    edit_skill_points(character_data[3])
-    edit_feats(character_data[4])
-    edit_spells(character_data[5], character_data[0], character_data[1])
-    edit_hd(character_data[6])
+    edit_onecell(character.class_name, 'N22', 0)  # set class name
+    edit_stats(character.stats)
+    edit_skills(character.skills)
+    edit_onecell(character.skill_points, 'M4', 0)  # set class skill points
+    edit_feats(character.feats)
+    edit_spells(character.spells, character.class_name, character.stats)
+    edit_onecell(character.hd, 'M22', 0)  # set class hit die
 
     def save(save_file):
         i = 0
