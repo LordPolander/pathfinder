@@ -1,6 +1,7 @@
 from ezodf import opendoc
 from pathlib import Path
 
+# this is a test comment
 
 def update_pos(pos, x=0, y=0):
     ver = ''
