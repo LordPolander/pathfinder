@@ -75,7 +75,7 @@ def find_spells(soup, character_level):
     tabs = find_tabs(soup)
     character_spells = []
     _start = 1
-    for i, x in enumerate(range(tabs), start=_start):  # replace tabs with 6 if you get trouble? i forgot what it does
+    for i, x in enumerate(range(tabs), start=_start):  
         if i >= 7:
             a = str(tab[i].text)  # level of spell(s)
             a = a[0]  # keep only first character, aka level of spells

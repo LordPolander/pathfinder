@@ -38,7 +38,7 @@ def create_sheet(character_class_link, character_level):
         return
     print_data()
 
-    edit = False  # enable editing of ods
+    edit = True  # enable editing of ods
     file = 'excel_path_sheet.ods'
     if edit:
         ods_editor.edit(file, character)

@@ -18,6 +18,13 @@ def update_pos(pos, x=0, y=0):
 def edit(file_name, character):
     doc = opendoc(file_name)
 
+    def edit_onecell(character_data, str_cell, sheet):
+        pos = update_pos(str_cell)
+        sheet = doc.sheets[sheet]
+        cell = sheet[pos]
+        cell.set_value(character_data)
+        return
+
     def edit_stats(character_stats):
         pos = update_pos('W22')
         sheet = doc.sheets[0]
@@ -32,25 +39,10 @@ def edit(file_name, character):
         attack_mod = attack_mod[0]  # take first mod from list
         attack_mod = attack_mod.replace('+', '')  # delete + from the mod
 
-        # Q
-        pos = update_pos('Q22')  # set it to Q22
-        cell = sheet[pos]
-        cell.set_value(attack_mod)
-
-        # T
-        pos = update_pos(pos, 3)
-        cell = sheet[pos]  # move from Q to T
-        cell.set_value(character_stats[2])
-
-        # U
-        pos = update_pos(pos, 1)
-        cell = sheet[pos]  # +1
-        cell.set_value(character_stats[3])
-
-        # V
-        pos = update_pos(pos, 1)
-        cell = sheet[pos]  # +1
-        cell.set_value(character_stats[4])
+        edit_onecell(attack_mod, 'Q22', 0)
+        edit_onecell(character_stats[2], 'T22', 0)
+        edit_onecell(character_stats[3], 'U22', 0)
+        edit_onecell(character_stats[4], 'V22', 0)
         return
 
     def edit_skills(character_skills):
@@ -103,12 +95,7 @@ def edit(file_name, character):
                 pos = update_pos(pos, 0, 2)
         return
 
-    def edit_onecell(character_data, str_cell, sheet):
-        pos = update_pos(str_cell)
-        sheet = doc.sheets[sheet]
-        cell = sheet[pos]
-        cell.set_value(character_data)
-        return
+    
 
     def edit_spells(character_spells, character_class, character_stats):
         if len(character_spells) > 0:
