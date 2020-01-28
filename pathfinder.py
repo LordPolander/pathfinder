@@ -2,6 +2,7 @@ import webscrape
 import ods_editor
 from character import Character
 
+# this link is for testing
 # https://www.d20pfsrd.com/classes/core-classes/cleric/
 
 print('Ooga booga, POLSKA®')
