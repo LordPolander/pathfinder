@@ -2,11 +2,8 @@ import webscrape
 import ods_editor
 from character import Character
 
-# this link is for testing
-# https://www.d20pfsrd.com/classes/core-classes/cleric/
 
 print('Ooga booga, POLSKA®')
-
 
 def create_sheet(character_class_link, character_level):
     character_class_page = webscrape.preprequest(character_class_link)  # send link for data

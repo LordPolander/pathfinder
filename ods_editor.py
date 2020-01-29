@@ -1,6 +1,7 @@
 from ezodf import opendoc
 from pathlib import Path
 
+
 def update_pos(pos, x=0, y=0):
     ver = ''
     hor = ''
@@ -11,7 +12,6 @@ def update_pos(pos, x=0, y=0):
             ver = ver + char
 
     return f'{chr(ord(hor) + x)}{int(ver) + y}'
-
 
 
 def edit(file_name, character):
