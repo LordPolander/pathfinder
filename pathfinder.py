@@ -45,7 +45,7 @@ def create_sheet(character_class_link, character_level):
 
 if __name__ == '__main__':
 
-    debug = True
+    debug = False
 
     if debug:
         character_level = int(10)
