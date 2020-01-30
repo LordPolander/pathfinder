@@ -161,14 +161,14 @@ def find_hd(soup):
     tab = soup.find_all('p')
     for i in tab:  # check all 'p'
         # messy, finds hd or hit dice, whatever it is called
-        if 'Hit Die:' in i.text or 'Hit Dice:' in i.text or 'HD: ' in i.text:  # find hit die
-            # remove text and only keep d(number)
-            a = i.text
-            a = a.replace('Hit Die:', '')
-            a = a.replace('Hit Dice:', '')
-            a = a.replace('HD:', '')
-            a = a.replace('.', '')
-            return a
+        hd =  ['Hit Die:','Hit Dice:','HD: ']
+        hd_to_return = i.text
+        for hd_text in hd:
+            if hd_text in i.text:
+                hd_to_return = hd_to_return.replace(hd_text,'')
+                hd_to_return = hd_to_return.replace('.','')
+                return hd_to_return
+        
 
 def find_data(soup,character_level):
     data = [find_class(soup),
