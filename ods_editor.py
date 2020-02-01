@@ -99,15 +99,27 @@ def edit(file_name, character):
     def edit_spells(character_spells, character_class, character_stats):
         if len(character_spells) > 0:
             # set spells class name
-            pos = update_pos('B3')
+            edit_onecell(character_class, 'B3', 2)
+            # set class level
+            edit_onecell(character_stats[0][:-2], 'G3', 2)
+
+            # set spells
+            # D8-26 by 2
             sheet = doc.sheets[2]
-            cell = sheet[pos]
-            cell.set_value(character_class)
-            # set spells level
-            pos = update_pos('G3')
-            cell = sheet[pos]
-            level = character_stats[0]
-            cell.set_value(level[:-2])
+            pos='D8'
+            updater = 2  # by how much to increase 
+            
+            start_spell_level = int(character_spells[0][0])
+            if start_spell_level == 1:
+                pos = update_pos(pos, 0, updater)
+
+            for spell in character_spells:
+                
+                cell = sheet[pos]
+                cell.set_value(spell[2])
+                pos = update_pos(pos, 0, updater)
+
+            
         return
 
     edit_onecell(character.class_name, 'N22', 0)  # set class name

@@ -1,5 +1,4 @@
 excel_path_sheet.ods
 pathfinder.exe
 README.txt
-unknown.png
-TUTORIAL.bmp
+Pathinator.exe

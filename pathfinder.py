@@ -1,6 +1,7 @@
 import webscrape
 import ods_editor
 from character import Character
+import sys
 
 
 print('Ooga booga, POLSKA®')
@@ -44,17 +45,21 @@ def create_sheet(character_class_link, character_level):
     print('ooga booga finished')
 
 if __name__ == '__main__':
-
-    debug = False
-
-    if debug:
-        character_level = int(10)
-        character_class_link = str('https://www.d20pfsrd.com/classes/core-classes/wizard/')
+    
+    if len(sys.argv)>=1:
+        print(sys.argv)
+        create_sheet(sys.argv[1], int(sys.argv[2]))
     else:
-        character_level = input('enter level: ')
+        debug = False
 
-        character_class_link = input('enter link: ')
+        if debug:
+            character_level = int(10)
+            character_class_link = str('https://www.d20pfsrd.com/classes/core-classes/wizard/')
+        else:
+            character_level = input('enter level: ')
 
-    create_sheet(character_class_link, int(character_level))
+            character_class_link = input('enter link: ')
 
-    input("Press Enter to exit...")
+        create_sheet(character_class_link, int(character_level))
+
+        input("Press Enter to exit...")

@@ -37,8 +37,15 @@ def install():
         f2.close()
     return
 
+def hide_file():
+    for content in contents:
+        os.system(f'attrib +h {content}')
+    os.system('attrib -h Pathinator.exe')
+    return
 
 install()
+hide_file()
+
 
 os.remove('install.txt')
 
