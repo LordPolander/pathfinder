@@ -46,7 +46,7 @@ def create_sheet(character_class_link, character_level):
 
 if __name__ == '__main__':
     
-    if len(sys.argv)>=1:
+    if len(sys.argv)>1:
         print(sys.argv)
         create_sheet(sys.argv[1], int(sys.argv[2]))
     else:
