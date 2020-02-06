@@ -133,14 +133,18 @@ def edit(file_name, character):
     def save(save_file):
         i = 0
         while True:
-            if Path(save_file + str(i) + '.ods').is_file():
+            file_name = save_file + str(i) + '.ods'
+            if Path(file_name).is_file():
                 i += 1
-            else:
-                doc.saveas(save_file + str(i) + '.ods')
+            else:       
+                doc.saveas(file_name)
                 print('')
                 print('file saved as:', save_file + str(i) + '.ods')
                 break
 
-        return
+        return file_name
 
-    save('character_sheet')  # save file after everything is put in
+    file_name = save('character_sheet')  # save file after everything is put in
+    return file_name
+
+  

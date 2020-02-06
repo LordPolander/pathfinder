@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\ignac\Documents\My Scripts\Python\pathfinder\env"
+VIRTUAL_ENV="C:\Users\ignac\Documents\My Scripts\Python\Pathinator\pathfinder\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

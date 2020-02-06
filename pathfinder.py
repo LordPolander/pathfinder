@@ -2,7 +2,8 @@ import webscrape
 import ods_editor
 from character import Character
 import sys
-
+import os
+from time import sleep
 
 print('Ooga booga, POLSKA®')
 
@@ -40,15 +41,17 @@ def create_sheet(character_class_link, character_level):
     edit = True  # enable editing of ods
     file = 'excel_path_sheet.ods'
     if edit:
-        ods_editor.edit(file, character)
+        character_sheet = ods_editor.edit(file, character)
 
     print('ooga booga finished')
+
+    return character_sheet
 
 if __name__ == '__main__':
     
     if len(sys.argv)>1:
         print(sys.argv)
-        create_sheet(sys.argv[1], int(sys.argv[2]))
+        sheet = create_sheet(sys.argv[1], int(sys.argv[2]))
     else:
         debug = False
 
@@ -60,6 +63,10 @@ if __name__ == '__main__':
 
             character_class_link = input('enter link: ')
 
-        create_sheet(character_class_link, int(character_level))
+        sheet = create_sheet(character_class_link, int(character_level))
 
-        input("Press Enter to exit...")
+        # input("Press Enter open the sheet...")
+        # input("Press Enter Exit...")
+
+os.system(sheet)
+sleep(1)

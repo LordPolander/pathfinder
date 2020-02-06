@@ -1,4 +1,4 @@
-#!"c:\users\ignac\documents\my scripts\python\pathfinder\env\scripts\python.exe"
+#!"c:\users\ignac\documents\my scripts\python\pathinator\pathfinder\env\scripts\python.exe"
 # EASY-INSTALL-ENTRY-SCRIPT: 'future==0.18.2','console_scripts','pasteurize'
 __requires__ = 'future==0.18.2'
 import re
