@@ -125,7 +125,7 @@ def edit(file_name, character):
     edit_onecell(character.class_name, 'N22', 0)  # set class name
     edit_stats(character.stats)
     edit_skills(character.skills)
-    edit_onecell(character.skill_points, 'M4', 0)  # set class skill points
+    edit_onecell(character.skill_points[0], 'S4', 0)  # set class skill points
     edit_feats(character.feats)
     edit_spells(character.spells, character.class_name, character.stats)
     edit_onecell(character.hd, 'M22', 0)  # set class hit die
