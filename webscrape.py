@@ -80,6 +80,11 @@ def find_spells(soup, character_level):
             a = str(tab[i].text)  # level of spell(s)
             a = a[0]  # keep only first character, aka level of spells
             character_spells.append('{}{}{}'.format(a, '#', character_stats[i - 2]))
+            new_character_spells = []
+            for spell_slot in character_spells:
+                spell_slot = spell_slot.replace('-','0')
+                new_character_spells.append(spell_slot)
+            character_spells = new_character_spells
     return character_spells
 
 
